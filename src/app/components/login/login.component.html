@@ -1,0 +1,28 @@
+<div class="w-screen h-screen flex justify-center items-center bg-color">
+    <div class="image justify-start">
+        <img class="left" src="assets/img/team-work.png" alt="logo">
+    </div>
+    <div class="flex flex-col items-center justify-around h-4/5 w-5/12 shadow-2xl rounded" >
+        <h1 class="text-3xl font-bold mb-5">Iniciar sesion</h1>
+        <div>
+            <div class="input flex flex-col ">
+                <input [(ngModel)]="email" id="email" type="text" placeholder="Email"  class=" bg-white p-1">
+            </div>
+            <div class="input flex flex-col ">
+                <input [(ngModel)]="password" id="password" type="password" placeholder="Contraseña"  class=" bg-color-component p-1">
+            </div>
+            <div>
+                <button [disabled]="buttonDisabled" (click)="login()" class="button-login">
+                    <p >Iniciar Sesion</p>
+                </button>
+            </div>
+            <div *ngIf="errMessage" class="text-red-500">
+               <p>{{errMessage}}</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="image justify-end">
+        <img id="right" src="assets/img/team-work-2.png" alt="logo">
+    </div>
+</div>

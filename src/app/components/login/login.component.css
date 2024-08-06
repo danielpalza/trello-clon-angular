@@ -1,0 +1,52 @@
+.bg-color{
+    background-color: #FFFFFF;
+}
+.bg-color-component{
+    background-color: #FFFFFF;
+}
+.input{
+    margin: 0.5rem 0;
+    
+}
+.input > input{
+    border-radius: 5px;
+    padding:5px;
+    border: 2px solid #1a47a88c;
+    width: 20rem;
+    font-size: 18px;
+}
+
+.button-login{
+    background-color: #1a47a8;
+    border-radius: 5px;
+    padding:10px;
+    width: 20rem;
+    transition: .4s;
+
+}
+
+.button-login > p{
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+.button-login:hover{
+    background-color: #2460e2;
+}
+.button-login:disabled{
+    background-color: #1a47a88c;
+}
+
+
+.image{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    
+}
+
+.image > img{
+    width: 90%;
+    opacity: 0.7;
+}

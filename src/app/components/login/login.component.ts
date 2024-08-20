@@ -2,11 +2,14 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { navigateToUrl } from 'single-spa';
+import {CommonModule} from '@angular/common';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
-  imports: [FormsModule, RouterModule],
+  imports: [FormsModule, RouterModule, CommonModule],
   standalone: true
 })
 export class LoginComponent {
@@ -43,7 +46,7 @@ export class LoginComponent {
       if (res) {
         alert('Login exitoso');
         //logica para loguear y redireccionamiento
-
+        navigateToUrl('/dashboard');
         this.buttonDisabled = false;
       }else{
         this.showError("Credenciales incorrectas")

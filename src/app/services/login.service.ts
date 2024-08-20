@@ -1,33 +1,28 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
-let users = [
-  { email: 'usuario1@example.com', password: 'contraseña1' },
-  { email: 'usuario2@example.com', password: 'contraseña2' },
-  { email: 'usuario3@example.com', password: 'contraseña3' },
-  { email: 'test@test.com', password: 'test' }
-];
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  constructor() { }
+  private apiUrl = 'http://localhost:8081/api/v1/login/';
+  constructor(private http: HttpClient ) { }
 
   login(email: string, password: string): Observable<boolean> {
-    return new Observable<boolean>((observer) => {
-      setTimeout(() => {
-        if (email && password) {
-          const user = users.find((user) => user.email === email && user.password === password);
-          if (user) {
-            observer.next(true); // Usuario encontrado, emite true
-          } else {
-            observer.next(false); // Usuario no encontrado, emite false
-          }
-        } 
-        observer.complete(); // Completa la observación
-      }, 3000);
-    });
+    let url = `${this.apiUrl}/auth`;
+    return this.http.post<any[]>(url, {email, password} ).pipe(
+      
+      tap((response: any) => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          return true;
+        } else {
+          return false;
+        }
+      })
+    )
+
   }
 }

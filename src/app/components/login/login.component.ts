@@ -17,6 +17,10 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
   errMessage: string='';
+  user = {
+    email: '',
+    password: ''
+  };
   constructor(private loginService: LoginService) {}
 
   showError(msg: string) {
@@ -26,27 +30,27 @@ export class LoginComponent {
     },3000)
   }
  
-  login() {
+  onSubmit() {
     this.buttonDisabled = true;
 
-    if (!this.email || !this.password){
+    if (!this.user.email || !this.user.password){
       
       this.showError("Por favor ingrese usuario y contraseña")
       this.buttonDisabled = false;
       return;
     }
 
-    if( !this.email.match("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ){
+    if( !this.user.email.match("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$") ){
       this.showError("Por favor ingrese un correo valido")
       this.buttonDisabled = false;
       return;
     }
 
-    this.loginService.login(this.email, this.password).subscribe((res) => {
+    this.loginService.login(this.user.email, this.user.password).subscribe((res) => {
       if (res) {
         alert('Login exitoso');
         //logica para loguear y redireccionamiento
-        navigateToUrl('/dashboard');
+        navigateToUrl('/');
         this.buttonDisabled = false;
       }else{
         this.showError("Credenciales incorrectas")
